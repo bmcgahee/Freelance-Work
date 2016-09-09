@@ -1,0 +1,130 @@
+Function getTier(tierOne As Integer, tierTwo As Integer, tierThree As Integer, performancePay As Double, count As Integer)
+
+    Dim tier As Double
+    tier = 0#
+    
+    If count = 3 Then
+        If performancePay >= tierOne And performancePay < tierTwo Then
+            tier = 0.03
+        ElseIf performancePay >= tierTwo And performancePay < tierThree Then
+            tier = 0.07
+        Else
+            tier = 0.11
+        End If
+        getTier = tier
+    Else
+        getTier = 0#
+    End If
+    
+End Function
+
+Function getEPPAccelerator(performancePay As Double, performance As Double, goal As Double, count As Integer)
+    
+    If count = 3 Then
+        If performance >= goal Then
+            getEPPAccelerator = performancePay * 0.02
+        Else
+            getEPPAccelerator = 0#
+        End If
+    End If
+    
+End Function
+
+Function getTabletAccelerator(performance As Integer, goal As Integer, count As Integer)
+
+    Dim extraTablets As Integer
+    extraTablets = performance - goal
+    
+    If count = 3 And extraTablets > 0 Then
+        getTabletAccelerator = 10 * performance
+    Else
+        getTabletAccelerator = 0#
+    End If
+    
+End Function
+
+Function getPayout(tierOne As Integer, tierTwo As Integer, tierThree As Integer, performancePay As Integer, count As Integer)
+
+    Dim tierPercentage As Double
+    tierPercentage = 0#
+    
+    If count = 3 Then
+        If performancePay >= tierOne And performancePay < tierTwo Then
+            tierPercentage = 0.03
+        ElseIf performancePay >= tierTwo And performancePay < tierThree Then
+            tierPercentage = 0.07
+        Else
+            tierPercentage = 0.11
+        End If
+        getPayout = performancePay * tierPercentage
+    Else
+        getPayout = 0#
+    End If
+    
+End Function
+
+Function getLosses(payout As Double, itemPerformance)
+
+    getLosses = payout * itemPerformance
+    
+End Function
+
+Function getCommission(payout As Double, itemPerformance As Integer, count As Integer)
+
+    Dim percentage As Double
+    percentage = 0#
+    
+    If count = 1 Then
+        percentage = 2# / 3#
+    ElseIf count = 2 Then
+        percentage = 1#
+    ElseIf count = 3 Then
+        percentage = 1#
+    End If
+
+    getCommission = payout * itemPerformance * percentage
+    
+End Function
+
+Function getTotalCompounders(minBoxes As Integer, minTablets As Integer, minTotalNew As Integer, actualBoxes As Integer, actualTablets As Integer, actualTotalNew As Integer)
+    
+    Dim countCompounders As Integer
+    countCompounders = 0
+    
+    If actualBoxes >= minBoxes Then
+        countCompounders = countCompounders + 1
+    End If
+    
+    If actualTablets >= minTablets Then
+        countCompounders = countCompounders + 1
+    End If
+    
+    If actualTotalNew >= minTotalNew Then
+        countCompounders = countCompounders + 1
+    End If
+    
+    getTotalCompounders = countCompounders
+    
+End Function
+
+Function getTotal(grossPayout As Double, newPhones As Double, upgrades As Double, prepay As Double, outright As Double, tabletsMetrics As Double, pullThrough As Double, equipmentProtectionPlans As Double, accessories As Double, edgeChargebacks As Double, twoYearChargebacks As Double, tabletsAccelerator As Double, epp As Double)
+
+    Dim gpTotal As Double
+    Dim metricTotal As Double
+    Dim accleratorTotal As Double
+    
+    gpTotal = grossPayout
+    metricTotal = newPhones + upgrades + prepay + outright + tabletsMetrics + pullThrough + equipmentProtectionPlans + accessories + edgeChargebacks + twoYearChargebacks
+    acceleratorTotal = tabletsAccelerator + epp
+    
+    getTotal = gpTotal + metricTotal + acceleratorTotal
+    
+End Function
+
+Function getTotalCommission(total As Double, contentPayment As Double, commissionSpiffs As Double, lostRevenueErrors As Double)
+
+    getTotalCommission = total + contentPayment + commissionSpiffs + lostRevenueErrors
+    
+End Function
+
+
